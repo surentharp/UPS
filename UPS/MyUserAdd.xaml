@@ -1,0 +1,53 @@
+﻿<Window x:Class="UPS.MyUserAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UPS" xmlns:viewmodels="clr-namespace:UPS.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="User Add" Height="250" Width="400" Closing="Window_Closing">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Name:" Grid.Row="0" Grid.Column="0" Margin="5" />
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Name="txtName" Text="{Binding NewUser.Name, Mode=TwoWay}" />
+
+        <Label Content="Email:" Grid.Row="1" Grid.Column="0" Margin="5" />
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Name="txtEmail" Text="{Binding NewUser.Email, Mode=TwoWay}" />
+
+        <Label Content="Gender:" Grid.Row="2" Grid.Column="0" Margin="5" />
+        <ComboBox x:Name="cmbGender"  Grid.Row="2" Grid.Column="1" Margin="5"
+          ItemsSource="{Binding GenderOptions}"
+          SelectedValue="{Binding NewUser.Gender, Mode=TwoWay}">
+        </ComboBox>        
+
+        <Label Content="Status:" Grid.Row="3" Grid.Column="0" Margin="5" />
+        <ComboBox x:Name="cmbStatus" Grid.Row="3" Grid.Column="1" Margin="5"
+          ItemsSource="{Binding StatusOptions}"
+          SelectedValue="{Binding NewUser.Status, Mode=TwoWay}">
+        </ComboBox>
+
+        <ProgressBar x:Name="progressBar" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="20" Margin="5" Visibility="{Binding IsAdding, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <Button x:Name="btnAdd" Command="{Binding AddUserCommand}" Content="Add" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Width="80" HorizontalAlignment="Center" Margin="5" IsEnabled="{Binding IsAdding, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+
+    </Grid>
+</Window>
