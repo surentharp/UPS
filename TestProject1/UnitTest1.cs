@@ -37,8 +37,8 @@ namespace TestProject1
             // Arrange
             var newUser = new MyUser
             {
-                Name = "john doe",
-                Email = "john.doe@example.com",
+                Name = "Suren doe",
+                Email = "Suren.doe@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -94,7 +94,7 @@ namespace TestProject1
             var newUser = new MyUser
             {
                 Name = "   ", // Invalid name
-                Email = "john.doe@example.com",
+                Email = "Suren.doe@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -109,7 +109,7 @@ namespace TestProject1
             // Arrange
             var newUser = new MyUser
             {
-                Name = "john doe",
+                Name = "Suren doe",
                 Email = "invalid-email", // Invalid email format
                 Gender = "male",
                 Status = "active"
@@ -125,8 +125,8 @@ namespace TestProject1
             // Arrange
             var newUser = new MyUser
             {
-                Name = "john doe",
-                Email = "john.doe@example.com",
+                Name = "Suren doe",
+                Email = "Suren.doe@example.com",
                 Gender = "other", // Invalid gender
                 Status = "active"
             };
@@ -141,8 +141,8 @@ namespace TestProject1
             // Arrange
             var newUser = new MyUser
             {
-                Name = "john doe",
-                Email = "john.doe@example.com",
+                Name = "Suren doe",
+                Email = "Suren.doe@example.com",
                 Gender = "male",
                 Status = "pending" // Invalid status
             };
@@ -158,16 +158,16 @@ namespace TestProject1
             var user = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "john@example.com",
+                Name = "Suren",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "active"
             };
             var updatedUser = new MyUser
             {
                 Id = 1,
-                Name = "John Doe",
-                Email = "john.doe@example.com",
+                Name = "Suren Doe",
+                Email = "Suren.doe@example.com",
                 Gender = "male",
                 Status = "inactive"
             };
@@ -176,7 +176,7 @@ namespace TestProject1
                 StatusCode = HttpStatusCode.OK,
                 User = updatedUser
             };
-            var serializedUser = "{\"id\":1,\"name\":\"John Doe\",\"email\":\"john.doe@example.com\",\"gender\":\"male\",\"status\":\"inactive\"}";
+            var serializedUser = "{\"id\":1,\"name\":\"Suren Doe\",\"email\":\"Suren.doe@example.com\",\"gender\":\"male\",\"status\":\"inactive\"}";
             var content = new StringContent(serializedUser, Encoding.UTF8, "application/json");
             var responseMessage = new HttpResponseMessage(HttpStatusCode.OK) { Content = content };
             _httpMessageHandlerMock.Protected()
@@ -203,7 +203,7 @@ namespace TestProject1
             {
                 Id = 1,
                 Name = "", // Invalid: empty name
-                Email = "john@example.com",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -220,7 +220,7 @@ namespace TestProject1
             {
                 Id = 1,
                 Name = "", // Invalid: empty name
-                Email = "john@example.com",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -236,8 +236,8 @@ namespace TestProject1
             var user = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "johnexample.com", // Invalid: missing @ symbol
+                Name = "Suren",
+                Email = "Surenexample.com", // Invalid: missing @ symbol
                 Gender = "male",
                 Status = "active"
             };
@@ -253,8 +253,8 @@ namespace TestProject1
             var user = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "john@example.com",
+                Name = "Suren",
+                Email = "Suren@example.com",
                 Gender = "other", // Invalid: unsupported gender value
                 Status = "active"
             };
@@ -270,8 +270,8 @@ namespace TestProject1
             var user = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "john@example.com",
+                Name = "Suren",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "unknown" // Invalid: unsupported status value
             };
@@ -328,16 +328,16 @@ namespace TestProject1
             var filePath = "test_file.csv";
             var searchUser = new MyUser
             {
-                Name = "John",
+                Name = "Suren",
                 Gender = "male",
                 Status = "active"
             };
 
             var users = new List<MyUser>
     {
-        new MyUser { Id = 1, Name = "John Doe", Email = "johndoe@example.com", Gender = "male", Status = "active" },
-        new MyUser { Id = 2, Name = "Jane Smith", Email = "janesmith@example.com", Gender = "female", Status = "active" },
-        new MyUser { Id = 3, Name = "Bob Johnson", Email = "bobjohnson@example.com", Gender = "male", Status = "inactive" }
+        new MyUser { Id = 1, Name = "Suren one", Email = "Surenone@example.com", Gender = "male", Status = "active" },
+        new MyUser { Id = 2, Name = "Suren two", Email = "Surentwo@example.com", Gender = "female", Status = "active" },
+        new MyUser { Id = 3, Name = "Suren three", Email = "Surenthree@example.com", Gender = "male", Status = "inactive" }
     };
 
             // Mock the HTTP response
@@ -366,9 +366,9 @@ namespace TestProject1
             var csvData = await File.ReadAllTextAsync(filePath);
 
             Assert.That(csvData, Does.Contain("Id,Name,Email,Gender,Status"));
-            Assert.That(csvData, Does.Contain("1,John Doe,johndoe@example.com,male,active"));
-            Assert.That(csvData, Does.Contain("2,Jane Smith,janesmith@example.com,female,active"));
-            Assert.That(csvData, Does.Contain("3,Bob Johnson,bobjohnson@example.com,male,inactive"));
+            Assert.That(csvData, Does.Contain("1,Suren one,Surenone@example.com,male,active"));
+            Assert.That(csvData, Does.Contain("2,Suren two,Surentwo@example.com,female,active"));
+            Assert.That(csvData, Does.Contain("3,Suren three,Surenthree@example.com,male,inactive"));
 
             // Cleanup
             File.Delete(filePath);

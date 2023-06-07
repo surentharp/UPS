@@ -39,7 +39,7 @@ namespace TestProject1
         public void AddUserCommand_WhenExecutedWithSuccess_PublishesUserAddedEvent()
         {
             // Arrange
-            var newUser = new MyUser { Email = "test@example.com", Gender = "male", Name = "John", Status = "active" };
+            var newUser = new MyUser { Email = "test@example.com", Gender = "male", Name = "Suren", Status = "active" };
             _viewModel.NewUser = newUser;
 
             var addUserResponse = new ServerResponse { StatusCode = HttpStatusCode.Created, User = newUser };
@@ -60,7 +60,7 @@ namespace TestProject1
         public void AddUserCommand_WhenExecutedWithFailure_PublishesUserAddedEvent()
         {
             // Arrange
-            var newUser = new MyUser { Email = "test@example.com", Gender = "male", Name = "John", Status = "active" };
+            var newUser = new MyUser { Email = "test@example.com", Gender = "male", Name = "Suren", Status = "active" };
             _viewModel.NewUser = newUser;
 
             var addUserResponse = new ServerResponse { StatusCode = HttpStatusCode.BadRequest, User = null };
@@ -84,8 +84,8 @@ namespace TestProject1
             var selectedUser = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "john@example.com",
+                Name = "Suren",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -115,8 +115,8 @@ namespace TestProject1
             var selectedUser = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "john@example.com",
+                Name = "Suren",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -136,7 +136,7 @@ namespace TestProject1
             _userServiceMock.Verify(x => x.UpdateUser(selectedUser), Times.Once);
             Assert.IsFalse(_viewModel.IsUpdating);
             Assert.That(_viewModel.Users.Count, Is.EqualTo(0));
-            // Add additional assertions as needed
+
         }
 
         [Test]
@@ -151,7 +151,7 @@ namespace TestProject1
             // Assert
             _userServiceMock.Verify(x => x.UpdateUser(It.IsAny<MyUser>()), Times.Never);
             Assert.IsFalse(_viewModel.IsUpdating);
-            // Add additional assertions as needed
+
         }
 
         [Test]
@@ -161,8 +161,8 @@ namespace TestProject1
             var selectedUser = new MyUser
             {
                 Id = 1,
-                Name = "John",
-                Email = "john@example.com",
+                Name = "Suren",
+                Email = "Suren@example.com",
                 Gender = "male",
                 Status = "active"
             };
@@ -178,8 +178,7 @@ namespace TestProject1
             // Assert
             _userServiceMock.Verify(x => x.UpdateUser(selectedUser), Times.Once);
             Assert.IsFalse(_viewModel.IsUpdating);
-            // Check if the exception was logged or handled appropriately
-            // Add additional assertions as needed
+
         }
 
         [Test]
